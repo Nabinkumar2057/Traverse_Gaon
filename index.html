@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="tra.js"></script>
+    <title>Geomatics Link Traverser & Traverse Computation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            /* background-image: url('surveyor-total-station.jpg');  */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: black;
+        }
+        .container {
+            /* background-color: rgba(0, 0, 0, 0.7); Dark overlay to enhance text readability */
+            background-color: white;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: rgb(59, 133, 237); /* Gold color for headings */
+        }
+        p {
+            color: black;
+            font-weight: 600;
+        }
+         button {
+            padding: 10px;
+            margin: 5px;
+            border: none; 
+            border-color: black;
+            border-radius: 5px;
+        }
+        input,  select {
+            padding: 10px;
+            margin: 5px;
+            /* border: none; */
+            border-color: black;
+            border-width: 1px;
+            border-radius: 5px;
+        }
+        .links, .results {
+            margin-top: 20px;
+        }
+        .link-item, .result-item {
+            margin-bottom: 10px;
+        }
+        .traverse-section {
+            margin-top: 30px;
+            /* border-top: 1px solid #ccc; */
+            border-top: 1px solid black;
+            padding-top: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        /* .introduction-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+        } */
+  /* .introduction-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    background-image: url('https://img.freepik.com/free-photo/image-engineering-objects-workplace-top-view-construction-concept-engineering-tools-vintage-tone-retro-filter-effect-soft-focus-selective-focus_1418-714.jpg?w=996&t=st=1726750060~exp=1726750660~hmac=3a3a4ad21f4ad364e4d2a02da27ee4e0f91d222c9ad456706b2d96f479943e56');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+} */
+.introduction-section {
+    position: relative; /* Make the element a containing block for the pseudo-element */
+    margin-bottom: 30px;
+    padding: 20px;
+    background-image: url('https://img.freepik.com/free-photo/image-engineering-objects-workplace-top-view-construction-concept-engineering-tools-vintage-tone-retro-filter-effect-soft-focus-selective-focus_1418-714.jpg?w=996&t=st=1726750060~exp=1726750660~hmac=3a3a4ad21f4ad364e4d2a02da27ee4e0f91d222c9ad456706b2d96f479943e56');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1; /* Ensure the content is above the pseudo-element */
+}
+        button {
+            background-color: orange;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            /* background-color: #45a049; */
+            background-color: #1a3dd8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Geomatics Link Traverser & Traverse Computation</h1>
+
+        <!-- Introduction, Purpose, and Techniques Section -->
+        <div class="introduction-section">
+            <h2>Traverse</h2>
+            <p>A traverse in geomatics (or surveying) refers to a series of connected survey lines whose lengths and directions are measured. These lines form a path or network of points on the ground. Traverses are used to establish control networks, map areas, and precisely measure locations.</p>
+
+            <h2>Purpose</h2>
+            <p>The main purpose of a traverse is to establish accurate points on the earth's surface, which can be used as reference points in mapping, construction, and other geospatial applications. Traverses are essential for creating base maps and for setting out land boundaries.</p>
+
+            <h2>Techniques</h2>
+            <p>Techniques employed in this app include open traverse and closed traverse computations. In a closed traverse, the survey returns to the start point, allowing for misclosure calculations. In an open traverse, the start and end points are different, but distances between points can be calculated for accuracy assessments.</p>
+        </div>
+
+        <!-- Link Traverser Section -->
+        <form id="crawlForm">
+            <input type="url" id="domainInput" placeholder="Enter geomatics domain URL" required />
+            <button type="submit">Fetch Links</button>
+        </form>
+        <div class="links" id="links"></div>
+
+        <!-- Traverse Computation Section -->
+        <div class="traverse-section">
+            <h2>Traverse Computation</h2>
+            <form id="traverseForm">
+                <label for="traverseType">Select Traverse Type:</label>
+                <select id="traverseType" required>
+                    <option value="closed">Closed Traverse</option>
+                    <option value="open">Open Traverse</option>
+                </select>
+                
+                <!-- Input Fields for Traverse Points -->
+                <label>Enter Traverse Points (x, y):</label>
+                <div id="traversePoints">
+                    <input type="text" placeholder="Point 1 X" class="pointX" required />
+                    <input type="text" placeholder="Point 1 Y" class="pointY" required /><br>
+                    <input type="text" placeholder="Point 2 X" class="pointX" required />
+                    <input type="text" placeholder="Point 2 Y" class="pointY" required /><br>
+                </div>
+                
+                <button type="button" id="addPoint">Add Another Point</button>
+                <button type="submit">Compute Traverse</button>
+            </form>
+            <div class="results" id="results"></div>
+        </div>
+    </div>
+
+    <script src="tra.js"></script>
+</body>
+</html>
